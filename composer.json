@@ -1,0 +1,18 @@
+{
+    "name": "markgersaliaph/laravel-crud-generate",
+    "description": "My First Ever Package Project",
+    "autoload": {
+        "psr-4": {
+            "Markgersaliaph\\LaravelCrudGenerate\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mark Anthony Gersalia",
+            "email": "markgersalia.codev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+    
+}
