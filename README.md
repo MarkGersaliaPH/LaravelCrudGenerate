@@ -26,10 +26,16 @@ To generate CRUD files for a "Product" model:
 ``` 
 php artisan generate:crud Product 
 ```
+
 This will create the following files:
+
+```
+
 
 app/Models/Product.php
 app/Http/Controllers/ProductController.php
 resources/views/product/create.blade.php
 resources/views/product/index.blade.php
+
 ...
+```
