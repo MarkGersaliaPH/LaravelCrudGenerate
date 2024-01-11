@@ -6,7 +6,7 @@ A Laravel package to simplify the generation of CRUD (Create, Read, Update, Dele
 
 To install this package, use Composer:
 ``` 
-composer require your-vendor-name/your-package-name
+composer require markgersaliaph/laravel-crud-generate
 ```
 
 #Usage
