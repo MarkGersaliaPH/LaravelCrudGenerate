@@ -29,16 +29,7 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
      */
     public function handle()
     {
-        // //initialized question for the front end scaffolding
-        // $defaultIndex = 'breeze/react';
-        // $frontend = $this->choice(
-        //     'What is your framework?',
-        //     ['breeze/react', 'breeze/vue', 'breeze/blade'],
-        //     $defaultIndex
-        // );
-
-        // if ($frontend == $defaultIndex) {
-
+        
             $processCount = 2;
             $bar = $this->output->createProgressBar($processCount); 
             $bar->start();
@@ -53,14 +44,13 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
             } else {
                 $name =  $this->toUpperCase($exploded[0]);
             }
-            //  Artisan::call("make:model {$param} -m");  
+
+             Artisan::call("make:model {$param} -m");
+
             $this->processControllerCreation($name, $namespace);
             $this->processRouteCreation($param);
             $bar->finish();
-            return $this->info("\nYou have successfully generated {$name} CRUD");
-        // } else {
-        //     return $this->info("This Front end is not yet supported");
-        // }
+            return $this->info("\nYou have successfully generated {$name} CRUD"); 
     }
 
     public function toUpperCase($string)
@@ -120,6 +110,6 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
 
     public function processRouteCreation($param)
     {
-        
+
     }
 }
