@@ -1,10 +1,11 @@
 <?php
 
 namespace Markgersaliaph\LaravelCrudGenerate;
-
+ 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Markgersaliaph\LaravelCrudGenerate\Console\GenerateCrudCommand;
+use Markgersaliaph\LaravelCrudGenerate\Console\CrudInstallCommand;
 
 class LaravelCrudGenerateServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,7 @@ class LaravelCrudGenerateServiceProvider extends ServiceProvider
         // });    if ($this->app->runningInConsole()) {
         $this->commands([
             GenerateCrudCommand::class, 
+            CrudInstallCommand::class, 
         ]); 
 
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');

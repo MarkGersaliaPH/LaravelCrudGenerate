@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Markgersaliaph\LaravelCrudGenerate\Http\Controllers;
 
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request; 
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
-use phpDocumentor\Reflection\Types\This;
-
+use Markgersaliaph\LaravelCrudGenerate\Http\Controllers\Controller;
+use phpDocumentor\Reflection\Types\This; 
 class CrudController extends Controller
 {
     protected $perPage = 15, $page = 1, $model, $modelName, $filter, $errorMessages = [];
@@ -61,7 +60,7 @@ class CrudController extends Controller
     }
 
     public function index(Request $request)
-    {
+    { 
         try {
             $data = [
                 'items' => $this->getData()
@@ -82,8 +81,8 @@ class CrudController extends Controller
     {
 
         return $this->model()
-            ->search($this->searchFields(), \request()->get('q'))
-            ->filter(\request()->get('filters',[]))
+            // ->search($this->searchFields(), \request()->get('q'))
+            // ->filter(\request()->get('filters',[]))
             ->when($this->defaultWhere(), function ($q) {
                 $q->where($this->defaultWhere());
             })
@@ -123,7 +122,7 @@ class CrudController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, $this->createRules(), $this->getErrorMessages(), $this->getValidationAttributes());
-
+ 
         try {
             \DB::beginTransaction();
             $resource = $this->model();
@@ -133,7 +132,7 @@ class CrudController extends Controller
             $resource = $this->afterCreate($resource);
             \DB::commit();
             return $this->storeResponse(['item' => $resource, 'msg' => $this->modelName . ' was successfully created.']);
-        } catch (\Exception $e) {
+        } catch (\Exception $e) { 
             \DB::rollback();
             return $this->exceptionResponseBackToForm($e);
         }
