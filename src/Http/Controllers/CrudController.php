@@ -18,7 +18,7 @@ use Markgersaliaph\LaravelCrudGenerate\Http\Controllers\Controller;
 use phpDocumentor\Reflection\Types\This; 
 class CrudController extends Controller
 {
-    protected $perPage = 15, $page = 1, $model, $modelName, $filter, $errorMessages = [];
+    protected $perPage = 10, $page = 1, $model, $modelName, $filter, $errorMessages = [];
     protected $renderByInertia = true;
     protected $inertiaMainPage; //name of react path to display
     protected $inertiaFormPage;
@@ -132,7 +132,8 @@ class CrudController extends Controller
             $resource = $this->afterCreate($resource);
             \DB::commit();
             return $this->storeResponse(['item' => $resource, 'msg' => $this->modelName . ' was successfully created.']);
-        } catch (\Exception $e) { 
+        } catch (\Exception $e) {  
+            dd($e);
             \DB::rollback();
             return $this->exceptionResponseBackToForm($e);
         }
