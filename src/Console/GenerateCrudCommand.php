@@ -16,7 +16,7 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
      *
      * @var string
      */
-    protected $signature = 'crud:generate {param}';
+    protected $signature = 'crud:generate {name}';
 
     /**
      * The console command description.
@@ -31,32 +31,41 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
     public function handle()
     {
          
-            $processCount = 2;
-            $bar = $this->output->createProgressBar($processCount); 
-            $bar->start();
+        
+            $name = $this->argument('name');
+            $has_namespace = $this->choice('Do have namespace?',["yes","no"],1);
+            $namespace = null;
+            // $route_name = $this->toLower($   name);
+  
+            if($has_namespace == "yes"){
+                while (empty($namespace)) {
+                    $namespace = $this->ask('Enter your namespace:');
+        
+                    if (empty($namespace)) {
+                        $this->error('Name cannot be empty. Please try again.');
+                    }
+                }
+
+            } 
  
-            $param = $this->argument('param');
-            $exploded = explode("/", $param);
-            $name = "";
-            $namespace = ""; 
+            // $is_custom_route_name = $this->choice("Do you want to use this route {$route_name} name?",["Yes","No"],0);
+            
 
-            if (count($exploded) > 1) {
-                $namespace = $this->toUpperCase($exploded[0]);
-                $name =  $this->toUpperCase($exploded[1]);
-                $modelName = $name; 
-            } else {
-                $name =  $this->toUpperCase($exploded[0]);
-                $modelName = $param;
-            }
+            // if($is_custom_route_name == "No"){
+            //     $route_name = $this->ask('Enter route name');
+            // }
 
-
+            // dd($route_name);
+             
             
             // $this->output->title("Writing In Menus");
             // $this->processMenuCreation($param,$namespace); 
-
+            
+            $name = $this->toUpperCase($name);
+            $namespace = $this->toUpperCase($namespace);
      
             $this->output->title("Generating Model and Migrations");
-            $this->processModelCreation($modelName); 
+            $this->processModelCreation($name); 
             
             $this->output->title("Generating Routes");
             $this->processRouteCreation($name,$namespace);
@@ -67,7 +76,7 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
 
             
             $this->output->title("Generating React Components");
-            $this->processReactComponentCreation($param,$namespace); 
+            $this->processReactComponentCreation($name,$namespace); 
 
 
             $this->info("\nYou have successfully generated {$name} CRUD \n");
