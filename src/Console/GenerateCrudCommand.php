@@ -51,13 +51,10 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
 
 
             
-            $this->output->title("Writing In Menus");
-            $this->processMenuCreation($param,$namespace); 
+            // $this->output->title("Writing In Menus");
+            // $this->processMenuCreation($param,$namespace); 
 
-    
-
-
-        
+     
             $this->output->title("Generating Model and Migrations");
             $this->processModelCreation($modelName); 
             
