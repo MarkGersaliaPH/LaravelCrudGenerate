@@ -35,7 +35,7 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
             $name = $this->argument('name');
             $has_namespace = $this->choice('Do have namespace?',["yes","no"],1);
             $namespace = null;
-            // $route_name = $this->toLower($   name);
+            $route_name = $this->toLower($name);
   
             if($has_namespace == "yes"){
                 while (empty($namespace)) {
@@ -48,14 +48,14 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
 
             } 
  
-            // $is_custom_route_name = $this->choice("Do you want to use this route {$route_name} name?",["Yes","No"],0);
+            $is_custom_route_name = $this->choice("Do you want to use this  '{$route_name}' route name?",["yes","no"],0);
             
 
-            // if($is_custom_route_name == "No"){
-            //     $route_name = $this->ask('Enter route name');
-            // }
+            if($is_custom_route_name == "no"){
+                $route_name = $this->ask('Enter route name');
+            }
+            
 
-            // dd($route_name);
              
             
             // $this->output->title("Writing In Menus");
@@ -68,19 +68,19 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
             $this->processModelCreation($name); 
             
             $this->output->title("Generating Routes");
-            $this->processRouteCreation($name,$namespace);
+            $this->processRouteCreation($name,$namespace,$route_name);
 
             
             $this->output->title("Generating Controller");
-            $this->processControllerCreation($name, $namespace);
+            $this->processControllerCreation($name, $namespace,$route_name);
 
             
             $this->output->title("Generating React Components");
-            $this->processReactComponentCreation($name,$namespace); 
+            $this->processReactComponentCreation($name,$namespace,$route_name); 
 
 
             $this->info("\nYou have successfully generated {$name} CRUD \n");
-            
+        
             $this->output->info("Make sure to run php artisan migrate, and add the fields in the fillable on App\\Models\\$name.php");
     }
 

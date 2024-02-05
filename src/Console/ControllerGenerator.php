@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 trait ControllerGenerator
 { 
  
-    public function processControllerCreation($name, $namespace)
+    public function processControllerCreation($name, $namespace,$route_name)
     {
         $controllerName = "{$name}Controller";
 
@@ -18,22 +18,21 @@ trait ControllerGenerator
 
             $baseControllerContent = file_get_contents($baseControllerPath);
 
-            $this->processControllerWithNameSpace($namespace, $controllerName, $baseControllerContent,$name);
+            $this->processControllerWithNameSpace($namespace, $controllerName, $baseControllerContent,$name,$route_name);
         } else {
 
             $baseControllerPath = __DIR__ . '../../stubs/BaseController.php';
 
             $baseControllerContent = file_get_contents($baseControllerPath);
 
-            $this->processControllerWithoutNameSpace($controllerName, $baseControllerContent,$name);
+            $this->processControllerWithoutNameSpace($controllerName, $baseControllerContent,$name,$route_name);
         }
         
-
         $this->output->success("Controller Generated Successfully \n".app_path("/Http/Controllers/{$controllerName}.php"));
     }
 
 
-    public function processControllerWithoutNameSpace($controllerName, $baseControllerContent,$name)
+    public function processControllerWithoutNameSpace($controllerName, $baseControllerContent,$name,$route_name)
     {
 
         $destinationControllerPath = app_path("/Http/Controllers/{$controllerName}.php");
@@ -42,7 +41,7 @@ trait ControllerGenerator
 
         $newContent = str_replace('BaseController', $controllerName, $baseControllerContent); //Change the controller name to {$param}Controller
    
-        $newContent = str_replace('model.index',$this->toLower($name).".index", $newContent); //this is to change the main_route="model.index" to "name.index";
+        $newContent = str_replace('model.index',$route_name.".index", $newContent); //this is to change the main_route="model.index" to "name.index";
 
         fwrite($destinationController, $newContent);
 
@@ -50,7 +49,7 @@ trait ControllerGenerator
 
     }
 
-    public function processControllerWithNameSpace($namespace, $controllerName, $baseControllerContent,$name)
+    public function processControllerWithNameSpace($namespace, $controllerName, $baseControllerContent,$name,$route_name)
     {
         $createdControllerPath = app_path("/Http/Controllers/$namespace/{$controllerName}.php");
 
@@ -60,7 +59,7 @@ trait ControllerGenerator
 
         $newContent = str_replace('namespace App\Http\Controllers', "namespace App\\Http\\Controllers\\{$namespace};", $newContent); //Change the namespace of the new content
       
-        $newContent = str_replace('model.index',$this->toLower($name).".index", $newContent); //this is to change the main_route="model.index" to "name.index";
+        $newContent = str_replace('model.index',$route_name.".index", $newContent); //this is to change the main_route="model.index" to "name.index";
        
         $newContent = str_replace('Model/Namespace/',"$namespace/$name/", $newContent); //this is to change the react pages like $inertiaMainPage = 'Model/Namespace/List' to $inertiaMainPage = 'Namespace/Name/List' ";
 
