@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 
-class CrudInstallCommand extends Command
+class PublishComponentCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -30,17 +30,13 @@ class CrudInstallCommand extends Command
         // Copy package component to root
         
         $baseComponentsDirectory = __DIR__.'../../stubs/resources/inertia-react/js/Components';
-        $baseLayoutDirectory = __DIR__.'../../stubs/resources/inertia-react/js/Layouts';
-
-        $componentDestinationDirectory = resource_path("js/Components/");
-        $layoutDestinationDirectory = resource_path("js/Layouts/");
+       
+        $componentDestinationDirectory = resource_path("js/Components/"); 
   
         $this->copyFileWithProgressBar($baseComponentsDirectory,$componentDestinationDirectory,"Components");
+ 
 
-        
-        $this->copyFileWithProgressBar($baseLayoutDirectory,$layoutDestinationDirectory,"Layouts");
-
-        $this->info("\n\nComponents Installed");
+        $this->info("\n\nComponents Published");
     }
 
     public function copyFileWithProgressBar($source,$destination,$type){
