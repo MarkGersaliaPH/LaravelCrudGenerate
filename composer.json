@@ -6,6 +6,7 @@
             "Markgersaliaph\\LaravelCrudGenerate\\": "src/"
         }
     },
+    "license": "MIT",
     "authors": [
         {
             "name": "Mark Anthony Gersalia",
