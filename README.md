@@ -104,4 +104,11 @@ If you prefer to use built-in components, follow these steps:
 
 Now, when generating components with Laravel CRUD Generate, the components will be included based on the updated configuration.
 
+## Authors
+
+- [Mark Anthony Gersalia](mailto:markgersalia.codev@gmail.com) - Creator and Lead Developer
+- [Mardy Dela Cruz](mailto:mardy.delacruz@cs-its.com.ph)  - Contributor
+- [Jp Alcantara](mailto:jp.alcantara@cs-its.com.ph)  - Contributor
+- [Nelson Estuesta](mailto:nelson.estuesta@cs-its.com.ph)  - Contributor
+
  
