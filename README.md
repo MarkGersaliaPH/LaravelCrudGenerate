@@ -31,22 +31,25 @@ To install this package, use Composer:
 ```
 composer require markgersaliaph/laravel-crud-generate
 ```
+## Getting Started
 
-## Publish Components
-To publish components, use Artisan:
+### Publish Configuration and React Components
 
-```
-php artisan crud:publish-components
+To use the Laravel CRUD Generate package in your Laravel project, you'll need to publish the configuration file and React components. Follow these steps:
 
-```
-This will create the following files:
+1. **Publish Configuration File:**
 
-```
-resources/js/Components/Table.jsx
-resources/js/Components/Pagination.jsx
-```
+   Run the following Artisan command to publish the configuration file:
 
-You can remove these generated components if you don't want to use them.
+   ```bash
+   php artisan vendor:publish --tag=public --provider="Markgersaliaph\LaravelCrudGenerate\LaravelCrudGenerateServiceProvider"
+
+## Configure Package
+After publishing the configuration file, you can customize the behavior of Laravel CRUD Generate by modifying
+
+```config/laravel-crud-generate.php```
+
+in your Laravel project. Adjust the values according to your requirements.
 
 ## Usage
 After installation, use the provided Artisan command to generate CRUD files for a specific model:
@@ -78,4 +81,27 @@ It will also generate a route in web.php:
 Route::resource('products', App\Http\Controllers\ProductsController::class);
 
 ```
+
+
+## Generating Components with Built-In Components
+
+If you prefer to use built-in components, follow these steps:
+
+1. Open the configuration file located at `config/laravel-crud-generate.php`.
+
+2. Set the `'plain_components'` option to `false`:
+
+    ```php
+    // config/laravel-crud-generate.php
+
+    return [
+        'plain_components' => false,
+        // Additional configuration options...
+    ];
+    ```
+
+   This configuration change will enable the use of built-in components such as `Table.jsx` and `Pagination.jsx` in your Laravel project.
+
+Now, when generating components with Laravel CRUD Generate, the components will be included based on the updated configuration.
+
  

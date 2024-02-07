@@ -8,7 +8,13 @@ trait ComponentGenerator
 
     public function processReactComponentCreation($name,$namespace,$route_name){
          
-        $baseComponentsDirectory = __DIR__.'../../stubs/resources/inertia-react/js/Pages/BaseCrud';
+        
+        if(config('laravel-crud-generate.plain_components')){
+            $baseComponentsDirectory = __DIR__.'../../stubs/resources/inertia-react/js/Pages/PlainBaseCrud';
+        }else{
+            $baseComponentsDirectory = __DIR__.'../../stubs/resources/inertia-react/js/Pages/BaseCrud';
+        }
+        
         $resource_path = resource_path("js/Pages/$name/");
         if($namespace){
             $resource_path = resource_path("js/Pages/$namespace/$name/"); 
