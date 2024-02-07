@@ -44,16 +44,17 @@ class GenerateCrudCommand extends Command  implements PromptsForMissingInput
                     if (empty($namespace)) {
                         $this->error('Name cannot be empty. Please try again.');
                     }
-                }
+                } 
 
+                $route_name = $this->toLower($namespace).'.'.$this->toLower($name);
             } 
  
-            $is_custom_route_name = $this->choice("Do you want to use this  '{$route_name}' route name?",["yes","no"],0);
-            
+            // $is_custom_route_name = $this->choice("Do you want to use this  '{$route_name}' route name?",["yes","no"],0);
+        
 
-            if($is_custom_route_name == "no"){
-                $route_name = $this->ask('Enter route name');
-            }
+            // if($is_custom_route_name == "no"){
+            //     $route_name = $this->ask('Enter route name');
+            // }
             
 
              

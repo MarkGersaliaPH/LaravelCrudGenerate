@@ -41,20 +41,21 @@ class PublishComponentCommand extends Command
 
     public function copyFileWithProgressBar($source,$destination,$type){
 
+       
         $files = (new Filesystem())->allFiles($source);
-        $this->output->title("Publishing resources/js/$type");
  
 
-        foreach ($files as $file) {
-            $relativePath = str_replace($source, '', $file->getRealPath());
-            $destinationPath = $destination;
-            (new Filesystem())->copy($relativePath,$file);
-            $this->info("published: " . $file);
-            
-        }
+        foreach ($files as $file) { 
+            $destinationPath = $destination .  basename($file->getRealPath()); //Destination path with file name
+ 
+            // Copy the file
+            (new Filesystem())->copy($file->getRealPath(), $destinationPath);
 
-        
-        // $progressBar->finish();
-        // $this->output->text("\n$type published: " . implode("\n", $files));
+            $this->info("\nPublished {$file->getRealPath()} to $destinationPath");
+
+
+
+        }
+ 
     }
 }
