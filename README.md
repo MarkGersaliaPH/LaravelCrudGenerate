@@ -5,7 +5,7 @@
         <img src="https://img.shields.io/packagist/dt/markgersaliaph/laravel-crud-generate" alt="Total Downloads">
     </a>
     <a href="https://packagist.org/packages/markgersaliaph/laravel-crud-generate">
-        <img src="https://img.shields.io/packagist/v/laravel/breeze" alt="Latest Stable Version">
+        <img src="https://img.shields.io/packagist/v/markgersaliaph/laravel-crud-generate" alt="Latest Stable Version">
     </a>
     <a href="https://packagist.org/packages/markgersaliaph/laravel-crud-generate">
         <img src="https://img.shields.io/packagist/l/markgersaliaph/laravel-crud-generate" alt="License">
