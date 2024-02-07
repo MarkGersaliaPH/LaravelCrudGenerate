@@ -11,6 +11,18 @@
         {
             "name": "Mark Anthony Gersalia",
             "email": "markgersalia.codev@gmail.com"
+        },
+        {
+            "name": "Mardy Dela Cruz",
+            "email": "mardy.delacruz@cs-its.com.ph"
+        },
+        {
+            "name": "Jp Alcantara",
+            "email": "jp.alcantara@cs-its.com.ph"
+        },
+        {
+            "name": "Nelson Estuesta",
+            "email": "nelson.estuesta@cs-its.com.ph"
         }
     ],
     "minimum-stability": "dev",

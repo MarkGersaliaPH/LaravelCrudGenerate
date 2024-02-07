@@ -132,8 +132,7 @@ class CrudController extends Controller
             $resource = $this->afterCreate($resource);
             \DB::commit();
             return $this->storeResponse(['item' => $resource, 'msg' => $this->modelName . ' was successfully created.']);
-        } catch (\Exception $e) {  
-            dd($e);
+        } catch (\Exception $e) {   
             \DB::rollback();
             return $this->exceptionResponseBackToForm($e);
         }
