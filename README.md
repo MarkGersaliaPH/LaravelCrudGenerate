@@ -55,7 +55,7 @@ in your Laravel project. Adjust the values according to your requirements.
 After installation, use the provided Artisan command to generate CRUD files for a specific model:
 
 ```
-php artisan generate:crud YourModel
+php artisan crud:generate YourModel
 ```
 Replace YourModel with the name of your Eloquent model. This command will generate the necessary files, including the model,migrations, controller, react components, and routes.
 
@@ -63,7 +63,7 @@ Replace YourModel with the name of your Eloquent model. This command will genera
 To generate CRUD files for a "Product" model:
 
 ```
-php artisan generate:crud Product
+php artisan crud:generate Product
 
 ```
 This will create the following files:
